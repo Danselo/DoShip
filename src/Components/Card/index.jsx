@@ -5,8 +5,16 @@ import { PlusSmallIcon} from "@heroicons/react/24/outline";
 const Card = (data)=>{
     //call the context 
     const context = useContext(ShoppingCartContext)
+    //call detail of card
+    const productDetailShow = (productDetail) => {
+        context.openProductDetail()
+        context.setShowProductDetail(productDetail)
+    }
     return(
-        <div className="bg-white cursor-pointer w-56 h-60 rounded-lg shadow-sm">
+        <div
+        className="bg-white cursor-pointer w-56 h-60 rounded-lg shadow-sm"
+        onClick={() => productDetailShow(data.data)}
+        >
             <figure className="relative mb-2 w-full h-4/5">
                 <span className="absolute bottom-0 left-0 bg-yellow-600 text-xs m-2 px-3 py-0.5 rounded-lg text-black/80">
                     {data.data.category.name}
