@@ -4,7 +4,6 @@ import { ShoppingCartContext } from "../../Context"
 import { XMarkIcon } from '@heroicons/react/24/solid'
 const ProductDetail = () => {
     const context = useContext(ShoppingCartContext)
-    console.log(context.showProductDetail);
     return(
         <aside 
         className ={`${context.isOpenProductDetail ? 'flex' : 'hidden'}  flex-col fixed bg-white right-0 border border-black rounded-lg w-[360px] h-[calc(100vh-68px)] top-68`}>
