@@ -9,10 +9,15 @@ const Card = (data)=>{
     const productDetailShow = (productDetail) => {
         context.openProductDetail()
         context.setShowProductDetail(productDetail)
+        context.closeShoppingSideMenu()
     }
-    const addProductCar = (productData) => {
+    const addProductCar = (event,productData) => {
+        event.stopPropagation()
         context.setAddProductToCar([...context.addProductToCar, productData]);
         context.setCount(context.count + 1)
+        context.closeProductDetail()
+        context.openShoppingSideMenu()
+
     }
     return(
         <div
@@ -23,8 +28,8 @@ const Card = (data)=>{
                 <span className="absolute bottom-0 left-0 bg-yellow-600 text-xs m-2 px-3 py-0.5 rounded-lg text-black/80">
                     {data.data.category.name}
                 </span>
-                <img className = "w-full h-full object-cover rounded-lg" src={data.data.images[0]} alt={data.data.title} />
-                <div onClick={()=> addProductCar(data.data)} className="absolute top-0 right-0 bg-white rounded-full flex w-6 h-6 justify-center items-center m-2 p-1 hover:bg-yellow-600">
+                <img className = "w-full h-full object-cover rounded-lg" src={data.data.images?.[0]} alt={data.data.title} />
+                <div onClick={(event)=> addProductCar(event,data.data)} className="absolute top-0 right-0 bg-white rounded-full flex w-6 h-6 justify-center items-center m-2 p-1 hover:bg-yellow-600">
                     <PlusSmallIcon className="h-full"/>
                 </div>
             </figure>

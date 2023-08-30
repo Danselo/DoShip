@@ -8,6 +8,7 @@ import MyOrders from '../MyOrders'
 import NotFound from '../NotFound'
 import SignIn from '../SignIn'
 import  Navbar  from '../../Components/Navbar'
+import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 const AppRouters = () => {
   //important install react-router-dom and import 
 
@@ -28,6 +29,7 @@ function App() {
       <BrowserRouter>
       <AppRouters />
       <Navbar />
+      <CheckoutSideMenu />
       </BrowserRouter>
     </ShoppingContext>
     
