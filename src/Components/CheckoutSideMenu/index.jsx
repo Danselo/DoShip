@@ -13,7 +13,7 @@ const CheckoutSideMenu = () => {
                     <XMarkIcon className='h-6 cursor-pointer hover:text-orange-600' onClick={context.closeShoppingSideMenu} />
                 </div>
             </div>
-            <div className="px-6">
+            <div className="px-6 overflow-y-scroll">
                 {
                    context.addProductToCar.map(product=>(
                     <OrderCard title={product.title} imageUrl = {product.images?.[0]} price = {product.price}/>
