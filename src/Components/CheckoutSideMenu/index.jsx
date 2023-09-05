@@ -4,6 +4,10 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import OrderCard from "../OrderCard"
 const CheckoutSideMenu = () => {
     const context = useContext(ShoppingCartContext)
+    const handleDelete = (id)=>{
+        const filteredProducts = context.addProductToCar.filter(product => product.id != id)
+        context.setAddProductToCar(filteredProducts)
+    }
     return(
         <aside 
         className ={`${context.isOpenShoppingSideMenu ? 'flex' : 'hidden'}  flex-col fixed bg-white top-20 right-0 border border-black rounded-lg w-[360px] h-[calc(100vh-68px)] top-68`}>
@@ -16,7 +20,7 @@ const CheckoutSideMenu = () => {
             <div className="px-6 overflow-y-scroll">
                 {
                    context.addProductToCar.map(product=>(
-                    <OrderCard title={product.title} imageUrl = {product.images?.[0]} price = {product.price}/>
+                    <OrderCard title={product.title} imageUrl = {product.images?.[0]} price = {product.price} handleDelete = {handleDelete} id={product.id} />
                    )) 
                 }
             </div>

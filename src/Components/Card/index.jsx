@@ -24,7 +24,7 @@ const Card = (data)=>{
         const isInCart = context.addProductToCar.filter(product => product.id === id ).length > 0
         if(isInCart){
             return(
-                <div className="absolute top-0 right-0 bg-black rounded-full flex w-6 h-6 justify-center items-center m-2 p-1 hover:bg-yellow-600">
+                <div className="absolute top-0 right-0 bg-black rounded-full flex w-6 h-6 justify-center items-center m-2 p-1">
                         <CheckIcon className="h-full text-white"/>
                     </div>
             )
