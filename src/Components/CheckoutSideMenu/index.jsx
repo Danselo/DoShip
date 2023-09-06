@@ -1,7 +1,8 @@
 import { useContext } from "react"
-import { ShoppingCartContext } from "../../Context"
+import { ShoppingCartContext } from "../../Context" 
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import OrderCard from "../OrderCard"
+import { totalProducts } from "../../utils"
 const CheckoutSideMenu = () => {
     const context = useContext(ShoppingCartContext)
     const handleDelete = (id)=>{
@@ -23,6 +24,12 @@ const CheckoutSideMenu = () => {
                     <OrderCard title={product.title} imageUrl = {product.images?.[0]} price = {product.price} handleDelete = {handleDelete} id={product.id} />
                    )) 
                 }
+            </div>
+            <div className="px-6 ">
+                <p className="flex justify-between items-center">
+                    <span className="font-light">Total:</span>
+                    <span className="font-medium text-2xl">${totalProducts(context.addProductToCar)}</span>
+                </p>
             </div>
         </aside>
     )
