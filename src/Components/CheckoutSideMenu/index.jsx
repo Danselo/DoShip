@@ -9,6 +9,20 @@ const CheckoutSideMenu = () => {
         const filteredProducts = context.addProductToCar.filter(product => product.id != id)
         context.setAddProductToCar(filteredProducts)
     }
+    const addOrder = ()=>{
+        if(context.addProductToCar.length > 0){
+            const newOrder = {
+                data: '06.09.2023',
+                products: context.addProductToCar,
+                totalProducts: context.addProductToCar.length,
+                TotalPrice: totalProducts(context.addProductToCar)
+            }
+            context.setOrder(...context.order, newOrder);
+            context.setAddProductToCar([])
+        }
+        console.log(context.order);
+        
+    }
     return(
         <aside 
         className ={`${context.isOpenShoppingSideMenu ? 'flex' : 'hidden'}  flex-col fixed bg-white top-20 right-0 border border-black rounded-lg w-[360px] h-[calc(100vh-68px)] top-68`}>
@@ -18,18 +32,19 @@ const CheckoutSideMenu = () => {
                     <XMarkIcon className='h-6 cursor-pointer hover:text-orange-600' onClick={context.closeShoppingSideMenu} />
                 </div>
             </div>
-            <div className="px-6 overflow-y-scroll">
+            <div className="px-6 overflow-y-scroll flex-1">
                 {
                    context.addProductToCar.map(product=>(
-                    <OrderCard title={product.title} imageUrl = {product.images?.[0]} price = {product.price} handleDelete = {handleDelete} id={product.id} />
+                    <OrderCard title={product.title} imageUrl = {product.images?.[0]} price = {product.price} handleDelete = {handleDelete} id={product.id}key={product.id} />
                    )) 
                 }
             </div>
-            <div className="px-6 ">
-                <p className="flex justify-between items-center">
+            <div className="px-6 mb-6 ">
+                <p className="flex justify-between items-center mb-3">
                     <span className="font-light">Total:</span>
                     <span className="font-medium text-2xl">${totalProducts(context.addProductToCar)}</span>
                 </p>
+                <button className="w-full py-3 bg-black text-white rounded-lg" onClick={addOrder}>Checkout</button>
             </div>
         </aside>
     )

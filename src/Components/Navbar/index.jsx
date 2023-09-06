@@ -86,7 +86,7 @@ const Navbar = () => {
                 </li>
                 <li className="relative">
                 <ShoppingCartIcon className="h-6" /> 
-                <span className="absolute flex w-4 h-3.5 items-center justify-center top-0 font-bold  text-xs right-0 bg-orange-600 rounded-full">{context.count}</span>
+                <span className="absolute flex w-4 h-3.5 items-center justify-center top-0 font-bold  text-xs right-0 bg-orange-600 rounded-full">{context.addProductToCar.length}</span>
                 </li>
             </ul>
         </nav>
