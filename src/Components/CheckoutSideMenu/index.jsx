@@ -16,7 +16,7 @@ const CheckoutSideMenu = () => {
                 data: '06.09.2023',
                 products: context.addProductToCar,
                 totalProducts: context.addProductToCar.length,
-                TotalPrice: totalProducts(context.addProductToCar)
+                totalPrice: totalProducts(context.addProductToCar)
             }
             context.setOrder([...context.order, newOrder]);
             context.setAddProductToCar([])
