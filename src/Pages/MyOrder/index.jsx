@@ -22,7 +22,7 @@ function MyOrder() {
           <h1>My Order</h1>
         </div>
 
-        <div className="flex flex-col w-80 pt-20">
+        <div className="flex flex-col w-80 pt-20 ">
                 {
                    lastestOrderProducts.map(product=>(
                     <OrderCard 
