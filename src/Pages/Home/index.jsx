@@ -7,8 +7,6 @@ import { ShoppingCartContext } from "../../Context"
 function Home() {
     const context = useContext(ShoppingCartContext)
     const renderProducts = () =>{
-      if(context.searchByTitle?.length > 0){
-
         if(context.filteredItems?.length > 0){
           return(
             context.filteredItems?.map(item => (
@@ -20,13 +18,6 @@ function Home() {
             <div>We don´t find concidences </div>
           )
         }
-      }else{
-        return (
-          context.items?.map(item => (
-            <Card data= {item} key={item.id}/>
-          ))
-        )
-      }
     }
     return (
       <Layout>
