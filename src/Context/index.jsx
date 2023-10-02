@@ -33,6 +33,17 @@ export const ShoppingContext = ({children})=> {
     //Get Products by title
 
     const [searchByTitle,setSearchByTitle] = useState(null); 
+    //filtered products
+    const [filteredItems,setFilteredItems] = useState(null); 
+
+    
+    // const filterProductsTitle  =  (items,searchByTitle) => {
+    //     //el filtrado para saber si incluye
+    //     return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    // }
+    const filterByTitle = (items,searchByTitle) => {
+        return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
 
     useEffect(()=> {
       //consume api using fetch and useEffect
@@ -41,6 +52,10 @@ export const ShoppingContext = ({children})=> {
       .then(data => setItems(data))
     },[])
 
+    useEffect(()=> {
+        if(searchByTitle) setFilteredItems(filterByTitle(items,searchByTitle))
+      },[items,searchByTitle])
+  
     return(
         <ShoppingCartContext.Provider value={{
             setCount,
@@ -60,7 +75,8 @@ export const ShoppingContext = ({children})=> {
             setItems,
             items,
             searchByTitle,
-            setSearchByTitle
+            setSearchByTitle,
+            filteredItems
         }}>
             {children}
         </ShoppingCartContext.Provider>
