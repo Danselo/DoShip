@@ -8,7 +8,7 @@ function MyOrders() {
     return (
       <Layout>
         <div className="flex items-center justify-center relative w-80">
-          <h1>My Orders</h1>
+          <h1 className="font-semibold">My Orders</h1>
         </div>
         {
           context.order.map((order,index)=>(
