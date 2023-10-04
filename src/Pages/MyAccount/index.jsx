@@ -49,7 +49,6 @@ function MyAccount() {
       </div>
       )
     }
-    console.log(view);
     const renderEditInfo = () => {
       return(
         <form ref={form} className="flex flex-col gap-4 w-80">
