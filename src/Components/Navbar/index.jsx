@@ -12,20 +12,18 @@ const Navbar = () => {
     const parsedSignOut = JSON.parse(singOut)
     const isUserSignOut = context.singOut || parsedSignOut
 
+    //Account 
+    const account = localStorage.getItem('account')
+    const parsedAccount = JSON.parse(account)
+
+    //has an account
+    const noAccountLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
+    const noAccountLocalState = context.account ? Object.keys(context.account).length === 0 : true
+    const hasUserAnAccount = !noAccountLocalStorage || !noAccountLocalState
+
     const renderView = () => {
-        if(isUserSignOut){
+        if(hasUserAnAccount && !isUserSignOut){
             return (
-                <li>
-                <NavLink to= '/sign-in'
-                className = {({isActive}) => isActive ? activeStyle : undefined}
-                onClick={()=> handleSignOut()}
-                >
-                    Sign In
-                </NavLink>
-            </li>
-            )
-        }else{
-            return(
                 <>
                 <li className="text-black/60">
                     dani@gmail.com
@@ -49,10 +47,22 @@ const Navbar = () => {
                     className = {({isActive}) => isActive ? activeStyle : undefined}
                     onClick={()=> handleSignOut()}
                     >
-                        Sign In
+                        Sign out
                     </NavLink>
                 </li>
                 </>
+               
+            )
+        }else{
+            return(
+                <li>
+                <NavLink to= '/sign-in'
+                className = {({isActive}) => isActive ? activeStyle : undefined}
+                onClick={()=> handleSignOut()}
+                >
+                    Sign in
+                </NavLink>
+            </li>
             )
         }
     }
@@ -66,7 +76,7 @@ const Navbar = () => {
             <ul className="flex items-center gap-3 ">
                 <li className="font-semibold text-xl animate-pulse font-mono text-yellow-600">
                     <NavLink 
-                    to= '/' 
+                    to={`${isUserSignOut ? '/sign-out' : '/'}`} 
                     onClick={() => context.setSearchByCategory('')}
                     >
                         DoShip
@@ -74,7 +84,8 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink 
-                    to= '/'
+                    to={`${isUserSignOut ? '/sign-out' : '/'}`} 
+
                     className = {({isActive}) => isActive ? activeStyle : undefined}
                     onClick={() => context.setSearchByCategory('')}
 
