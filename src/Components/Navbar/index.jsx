@@ -76,7 +76,7 @@ const Navbar = () => {
             <ul className="flex items-center gap-3 ">
                 <li className="font-semibold text-xl animate-pulse font-mono text-yellow-600">
                     <NavLink 
-                    to={`${isUserSignOut ? '/sign-out' : '/'}`} 
+                    to={`${isUserSignOut ? '/sign-in' : '/'}`} 
                     onClick={() => context.setSearchByCategory('')}
                     >
                         DoShip
@@ -84,7 +84,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink 
-                    to={`${isUserSignOut ? '/sign-out' : '/'}`} 
+                    to={`${isUserSignOut ? '/sign-in' : '/'}`} 
 
                     className = {({isActive}) => isActive ? activeStyle : undefined}
                     onClick={() => context.setSearchByCategory('')}
