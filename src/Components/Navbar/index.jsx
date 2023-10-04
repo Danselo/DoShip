@@ -27,7 +27,7 @@ const Navbar = () => {
             return (
                 <>
                 <li className="text-black/60">
-                    dani@gmail.com
+                    {parsedAccount?.email}
                 </li>
                 <li>
                     <NavLink to= '/my-orders'
