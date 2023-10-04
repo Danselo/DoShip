@@ -3,6 +3,7 @@ import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
 import { ShoppingCartIcon} from "@heroicons/react/24/outline";
 import { render } from "react-dom";
+import ShoppingCart from "../ShoppingCart";
 const Navbar = () => {
     const context = useContext(ShoppingCartContext)
     const activeStyle = 'underline underline-offset-8 shadow-lg'
@@ -141,8 +142,9 @@ const Navbar = () => {
             <ul className="flex justify-center gap-3 ">
                 {renderView()}
                 <li className="relative">
-                <ShoppingCartIcon className="h-6" /> 
-                <span className="absolute flex w-4 h-3.5 items-center justify-center top-0 font-bold  text-xs right-0 bg-orange-600 rounded-full">{context.addProductToCar.length}</span>
+                {/* <ShoppingCartIcon className="h-6" /> 
+                <span className="absolute flex w-4 h-3.5 items-center justify-center top-0 font-bold  text-xs right-0 bg-orange-600 rounded-full">{context.addProductToCar.length}</span> */}
+                <ShoppingCart/>
                 </li>
             </ul>
         </nav>
