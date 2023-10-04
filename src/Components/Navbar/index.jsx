@@ -2,9 +2,65 @@ import { NavLink } from "react-router-dom"
 import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
 import { ShoppingCartIcon} from "@heroicons/react/24/outline";
+import { render } from "react-dom";
 const Navbar = () => {
     const context = useContext(ShoppingCartContext)
     const activeStyle = 'underline underline-offset-8 shadow-lg'
+
+    //Sign out
+    const singOut = localStorage.getItem('sign-out');
+    const parsedSignOut = JSON.parse(singOut)
+    const isUserSignOut = context.singOut || parsedSignOut
+
+    const renderView = () => {
+        if(isUserSignOut){
+            return (
+                <li>
+                <NavLink to= '/sign-in'
+                className = {({isActive}) => isActive ? activeStyle : undefined}
+                onClick={()=> handleSignOut()}
+                >
+                    Sign In
+                </NavLink>
+            </li>
+            )
+        }else{
+            return(
+                <>
+                <li className="text-black/60">
+                    dani@gmail.com
+                </li>
+                <li>
+                    <NavLink to= '/my-orders'
+                    className = {({isActive}) => isActive ? activeStyle : undefined}
+                    >
+                        MyOrders
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to= '/my-account'
+                    className = {({isActive}) => isActive ? activeStyle : undefined}
+                    >
+                        My Account
+                    </NavLink>  
+                </li>
+                <li>
+                    <NavLink to= '/sign-in'
+                    className = {({isActive}) => isActive ? activeStyle : undefined}
+                    onClick={()=> handleSignOut()}
+                    >
+                        Sign In
+                    </NavLink>
+                </li>
+                </>
+            )
+        }
+    }
+    const handleSignOut = () => {
+        const stringifiedSignOut = JSON.stringify(true);
+        localStorage.setItem('sign-out',stringifiedSignOut);
+        context.setSignOut(true)
+    }
     return (
         <nav className="flex justify-between items-center w-full fixed py-5 px-8 z-10 text-sm top-0 font-light bg-white">
             <ul className="flex items-center gap-3 ">
@@ -72,30 +128,7 @@ const Navbar = () => {
                 </li>
             </ul>
             <ul className="flex justify-center gap-3 ">
-                <li className="text-black/60">
-                    dani@gmail.com
-                </li>
-                <li>
-                    <NavLink to= '/my-orders'
-                    className = {({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        MyOrders
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to= '/my-account'
-                    className = {({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        My Account
-                    </NavLink>  
-                </li>
-                <li>
-                    <NavLink to= '/sign-in'
-                    className = {({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Sign In
-                    </NavLink>
-                </li>
+                {renderView()}
                 <li className="relative">
                 <ShoppingCartIcon className="h-6" /> 
                 <span className="absolute flex w-4 h-3.5 items-center justify-center top-0 font-bold  text-xs right-0 bg-orange-600 rounded-full">{context.addProductToCar.length}</span>
