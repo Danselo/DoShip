@@ -37,6 +37,7 @@ function SignIn() {
       handleSignIn()
     }
 
+    
     const renderLogIn = () =>{
       return(
         <div className="flex flex-col w-80">
@@ -46,7 +47,7 @@ function SignIn() {
         </p>
         <p>
           <span className="font-light text-sm">Password:</span>
-          <span>{parsedAccount?.password}</span>
+          <span>{parsedAccount?.password ? '*'.repeat(parsedAccount.password.length) : ''}</span>
         </p>
         <Link to="/">
           <button 
@@ -78,6 +79,7 @@ function SignIn() {
             type="text"
             id="name"
             name= "name"
+            required
             defaultValue={parsedAccount?.name}
             placeholder="Adam"
             className="rounded-lg border border-black placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none py-2 px-4"
@@ -107,12 +109,13 @@ function SignIn() {
           </div>
           <Link to='/'>
             <button
-             className="bg-black text-white w-full rounded-lg py-3"
-             onClick={() => createAccount()}
-             >
+            className="bg-black text-white w-full rounded-lg py-3"
+            onClick={() => createAccount()}
+            type="submit"
+            >
               Create
             </button>
-          </Link>
+      </Link>
         </form>
       )
     }

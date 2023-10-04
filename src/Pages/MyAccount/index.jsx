@@ -24,6 +24,19 @@ function MyAccount() {
       localStorage.setItem('account',stringifiedAccount)
       context.setAccount(data)
     }
+    // validate form 
+
+
+  
+    const handleFormSubmit = (event) => {
+      event.preventDefault(); // Prevenir la recarga de la página
+        // El correo es válido, puedes cambiar la vista y luego llamar a editAccount
+        setView('user-info');
+        editAccount();
+   
+    };
+    
+    
     const renderUserInfo = () => {
       return(
         <div className="flex flex-col w-80">
@@ -37,7 +50,7 @@ function MyAccount() {
         </p>
         <p>
           <span className="font-light text-sm">Password:</span>
-          <span>{parsedAccount?.password}</span>
+          <span>{parsedAccount?.password ? '*'.repeat(parsedAccount.password.length) : ''}</span>
         </p>
           <button 
           className="bg-black disabled:bg-black/40 text-white w-full rounded-lg py-3 mt-4 mb-2"
@@ -49,9 +62,10 @@ function MyAccount() {
       </div>
       )
     }
+
     const renderEditInfo = () => {
       return(
-        <form ref={form} className="flex flex-col gap-4 w-80">
+        <form ref={form} className="flex flex-col gap-4 w-80" onSubmit={handleFormSubmit}>
           <div className="flex flex-col gap-1">
             <label htmlFor="name" className="font-light text-sm">Your name:</label>
             <input 
@@ -61,6 +75,7 @@ function MyAccount() {
             defaultValue={parsedAccount?.name}
             placeholder="Adam"
             className="rounded-lg border border-black placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none py-2 px-4"
+            required
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -72,6 +87,7 @@ function MyAccount() {
             defaultValue={parsedAccount?.email}
             placeholder="hi@helloword.com"
             className="rounded-lg border border-black placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none py-2 px-4"
+            required
             />
           </div>
              <div className="flex flex-col gap-1">
@@ -83,11 +99,12 @@ function MyAccount() {
             defaultValue={parsedAccount?.password}
             placeholder="******"
             className="rounded-lg border border-black placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none py-2 px-4"
+            required
             />
           </div>
             <button
              className="bg-black text-white w-full rounded-lg py-3"
-             onClick={() => {setView('user-info'),editAccount()}}
+             type="submit"
              >
               Edit
             </button>

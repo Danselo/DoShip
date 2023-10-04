@@ -1,8 +1,7 @@
 import { NavLink } from "react-router-dom"
 import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
-import { ShoppingCartIcon} from "@heroicons/react/24/outline";
-import { render } from "react-dom";
+
 import ShoppingCart from "../ShoppingCart";
 const Navbar = () => {
     const context = useContext(ShoppingCartContext)
@@ -43,7 +42,7 @@ const Navbar = () => {
                         My Account
                     </NavLink>  
                 </li>
-                <li>
+                <li className="text-red-500 font-semibold">
                     <NavLink to= '/sign-in'
                     className = {({isActive}) => isActive ? activeStyle : undefined}
                     onClick={()=> handleSignOut()}
