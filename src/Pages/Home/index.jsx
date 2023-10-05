@@ -3,7 +3,6 @@ import Layout from "../../Components/Layout"
 import Card from "../../Components/Card"
 import ProductDetail from '../../Components/ProductDetail'
 import { ShoppingCartContext } from "../../Context"
-
 function Home() {
     const context = useContext(ShoppingCartContext)
     const renderProducts = () =>{
@@ -20,6 +19,7 @@ function Home() {
         }
     }
     return (
+      <>
       <Layout>
           <div className="flex items-center justify-center relative w-80 mb-4">
           <h1 className="font-semibold">Exclusive Products</h1>
@@ -36,6 +36,9 @@ function Home() {
          </div>
          <ProductDetail />
       </Layout>
+
+      </>
+      
     )
   }
   

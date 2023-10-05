@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { useRoutes,BrowserRouter,Navigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet';
 import { ShoppingCartContext, ShoppingContext, initializeLocalStorage } from '../../Context'
 import './App.css'
 import Home from '../Home'
@@ -45,6 +46,19 @@ const AppRouters = () => {
 function App() {
   initializeLocalStorage()
   return (
+    <>
+    <div>
+      {/* Contenido de tu página */}
+      <Helmet>
+        <title>DoShip</title>
+        <meta property="og:title" content="E-commerce y venta de productos" />
+        <meta property="og:description" content="Venta de ropa,accesorios y aparatos tecnologicos" />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1511556820780-d912e42b4980?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" />
+        <meta property="og:url" content="https://do-ship.vercel.app/" />
+        {/* Otras etiquetas meta si es necesario */}
+      </Helmet>
+    </div>
+
     <ShoppingContext>
       <BrowserRouter>
       <AppRouters />
@@ -52,6 +66,8 @@ function App() {
       <CheckoutSideMenu />
       </BrowserRouter>
     </ShoppingContext>
+    </>
+    
     
   )
 }
