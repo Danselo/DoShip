@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom"
 import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
-
 import ShoppingCart from "../ShoppingCart";
 const Navbar = () => {
     const context = useContext(ShoppingCartContext)
@@ -25,21 +24,21 @@ const Navbar = () => {
         if(hasUserAnAccount && !isUserSignOut){
             return (
                 <>
-                <li className="text-black/60">
+                <li className="text-black/60 sm:hidden">
                     {parsedAccount?.email}
                 </li>
                 <li>
                     <NavLink to= '/my-orders'
                     className = {({isActive}) => isActive ? activeStyle : undefined}
                     >
-                        MyOrders
+                        Orders
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to= '/my-account'
                     className = {({isActive}) => isActive ? activeStyle : undefined}
                     >
-                        My Account
+                        Profile
                     </NavLink>  
                 </li>
                 <li className="text-red-500 font-semibold">
@@ -82,7 +81,7 @@ const Navbar = () => {
                         DoShip
                     </NavLink>
                 </li>
-                <li>
+                <li className={hasUserAnAccount && !isUserSignOut ? 'sm:hidden' : 'hidden'} >
                     <NavLink 
                     to={`${isUserSignOut ? '/sign-in' : '/'}`} 
 
@@ -93,7 +92,7 @@ const Navbar = () => {
                         All
                     </NavLink>
                 </li>
-                <li>
+                <li className={hasUserAnAccount && !isUserSignOut ? 'sm:hidden' : 'hidden'}>
                     <NavLink to= '/clothes'
                     className = {({isActive}) => isActive ? activeStyle : undefined}
                     onClick={() => context.setSearchByCategory('clothes')}
@@ -102,7 +101,7 @@ const Navbar = () => {
                         Clothes
                     </NavLink>
                 </li>
-                <li>
+                <li className={hasUserAnAccount && !isUserSignOut ? 'sm:hidden' : 'hidden'}>
                     <NavLink to= '/electronics'
                     className = {({isActive}) => isActive ? activeStyle : undefined}
                     onClick={() => context.setSearchByCategory('electronics')}
@@ -111,7 +110,7 @@ const Navbar = () => {
                         Electronics
                     </NavLink>
                 </li>
-                <li>
+                <li className={hasUserAnAccount && !isUserSignOut ? 'sm:hidden' : 'hidden'}>
                     <NavLink to= '/fornitures'
                     className = {({isActive}) => isActive ? activeStyle : undefined} 
                     onClick={() => context.setSearchByCategory('fornitures')}
@@ -120,7 +119,7 @@ const Navbar = () => {
                         Fornitures
                     </NavLink>
                 </li>
-                <li>
+                <li className={hasUserAnAccount && !isUserSignOut ? 'sm:hidden' : 'hidden'}>
                     <NavLink to= '/toys'
                     className = {({isActive}) => isActive ? activeStyle : undefined}
                     onClick={() => context.setSearchByCategory('toys')}
@@ -129,16 +128,16 @@ const Navbar = () => {
                         Toys
                     </NavLink>
                 </li>
-                <li>
+                <li className={hasUserAnAccount && !isUserSignOut ? 'sm:hidden' : 'hidden'}>
                     <NavLink to= '/others'
                     className = {({isActive}) => isActive ? activeStyle : undefined}
                     onClick={() => context.setSearchByCategory('others')}
                     >
                         Others
                     </NavLink>
-                </li>
+                </li >
             </ul>
-            <ul className="flex justify-center gap-3 ">
+            <ul className="flex justify-center gap-3 sm:gap-5 sm:justify-between ">
                 {renderView()}
                 <li className="relative">
                 {/* <ShoppingCartIcon className="h-6" /> 

@@ -27,7 +27,7 @@ const CheckoutSideMenu = () => {
     }
     return(
         <aside 
-        className ={`${context.isOpenShoppingSideMenu ? 'flex' : 'hidden'}  flex-col fixed bg-white top-20 right-0 border border-black rounded-lg w-[360px] h-[calc(100vh-68px)] top-68`}>
+        className ={`${context.isOpenShoppingSideMenu ? 'flex' : 'hidden'}  flex-col fixed bg-white top-20 right-0 border sm:w-full sm:h-[25rem] border-black rounded-lg w-[360px] h-[calc(100vh-68px)] top-68`}>
             <div className='flex justify-between items-center p-6'>
                 <h2 className='font-medium text-xl'>My Order</h2>
                 <div>
@@ -42,7 +42,7 @@ const CheckoutSideMenu = () => {
                 }
             </div>
             <div className="px-6 mb-6 ">
-                <p className="flex justify-between items-center mb-3">
+                <p className="flex justify-between items-center mb-3 sm:border sm:border-transparent sm:border-2 sm:border-t-yellow-600  ">
                     <span className="font-light">Total:</span>
                     <span className="font-medium text-2xl">${totalProducts(context.addProductToCar)}</span>
                 </p>
